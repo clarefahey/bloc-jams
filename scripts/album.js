@@ -28,6 +28,21 @@ var albumPicasso = {
      ]
  };
 
+ var albumMadonna = {
+     title: 'Madonna',
+     artist: 'Madonna',
+     label: 'Label',
+     year: '1983',
+     albumArtUrl: 'assets/images/album_covers/18.png',
+     songs: [
+         { title: 'Lucky Star', duration: '5:33' },
+         { title: 'Borderline', duration: '6:57' },
+         { title: 'Burning Up', duration: '3:45'},
+         { title: 'Holiday', duration: '3:52' },
+         { title: 'Everyvody', duration: '6:02'}
+     ]
+ };
+
  var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -39,6 +54,12 @@ var albumPicasso = {
 
      return template;
  };
+
+ var albumTitle = document.getElementsByClassName('album-view-title')[0];
+ var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+ var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+ var albumImage = document.getElementsByClassName('album-cover-art')[0];
+ var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
  var setCurrentAlbum = function(album) {
       var albumTitle = document.getElementsByClassName('album-view-title')[0];
@@ -58,4 +79,13 @@ var albumPicasso = {
 
   window.onload = function() {
       setCurrentAlbum(albumPicasso);
+      var albums = [albumPicasso, albumMarconi, albumMadonna];
+      var index = 1;
+      albumImage.addEventListener("click", function(event) {
+        setCurrentAlbum(albums[index])
+        index++;
+        if (index == albums.length) {
+          index = 0;
+        }
+      });
   };
