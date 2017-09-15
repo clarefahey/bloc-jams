@@ -124,6 +124,7 @@ var createSongRow = function(songNumber, songName, songLength) {
       }
   };
 
+<<<<<<< HEAD
 var updateSeekPercentage = function($seekBar, seekBarFillRatio) {
   var offsetXPercent = seekBarFillRatio * 100;
   offsetXPercent = Math.max(0, offsetXPercent);
@@ -200,6 +201,20 @@ var previousSong = function() {
 
     if (currentSongIndex < 0) {
         currentSongIndex = currentAlbum.songs.length - 1;
+=======
+var findParentByClassName = function(element, targetClass) {
+    if (element) {
+        var currentParent = element.parentElement;
+        if (currentParent.parentElement === null) {
+          return null;
+          console.log('No parent found');
+        }
+        while (currentParent.className !== targetClass && currentParent.className !== null) {
+            currentParent = currentParent.parentElement;
+        }
+        return currentParent;
+        console.log('No parent found with that class name');
+>>>>>>> checkpoint-13-assignment
     }
 
     var lastSongNumber = currentlyPlayingSongNumber;
