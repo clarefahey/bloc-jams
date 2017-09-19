@@ -285,6 +285,22 @@ var updatePlayerBarSong = function() {
 
 };
 
+var togglePlayFromPlayerBar = function(){
+
+    if (currentSoundFile.isPaused()){
+        $(getSongNumberCell(currentlyPlayingSongNumber)).html(pauseButtonTemplate);
+        $(this).html(playerBarPauseButton);
+        currentSoundFile.play();
+    }
+
+    else if (currentSoundFile && !currentSoundFile.isPaused()){
+        $(getSongNumberCell(currentlyPlayingSongNumber)).html(playButtonTemplate);
+        $(this).html(playerBarPlayButton);
+        currentSoundFile.pause();
+    }
+};
+
+
 var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
 var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
 var playerBarPlayButton = '<span class="ion-play"></span>';
@@ -298,7 +314,7 @@ var currentSoundFile = null;
 var currentVolume = 80;
 
 var $previousButton = $('.main-controls .previous');
-var $playButton = $('.main-controls .play-pause');
+var $playPauseButton = $('.main-controls .play-pause');
 var $nextButton = $('.main-controls .next');
 
 $(document).ready(function() {
@@ -306,5 +322,5 @@ $(document).ready(function() {
       setupSeekBars();
       $previousButton.click(previousSong);
       $nextButton.click(nextSong);
-      $playButton.click(togglePlayFromPlayerBar);
+      $playPausButton.click(togglePlayFromPlayerBar);
   });
