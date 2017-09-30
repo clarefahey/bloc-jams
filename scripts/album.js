@@ -65,6 +65,7 @@ var createSongRow = function(songNumber, songName, songLength) {
             }
           }
         };
+        
 
       var onHover = function(event) {
         var songNumberCell = $(this).find('.song-item-number');
