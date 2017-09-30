@@ -101,10 +101,41 @@ var createSongRow = function(songNumber, songName, songLength) {
       }
   };
 
+<<<<<<< HEAD
 var trackIndex = function(album, song) {
        return album.songs.indexOf(song);
 };
 
+=======
+  var updateSeekBarWhileSongPlays = function() {
+       if (currentSoundFile) {
+           currentSoundFile.bind('timeupdate', function(event) {
+               var seekBarFillRatio = this.getTime() / this.getDuration();
+               var $seekBar = $('.seek-control .seek-bar');
+
+               updateSeekPercentage($seekBar, seekBarFillRatio);
+           });
+       }
+   };
+
+
+var updateSeekPercentage = function($seekBar, seekBarFillRatio) {
+  var offsetXPercent = seekBarFillRatio * 100;
+
+  offsetXPercent = Math.max(0, offsetXPercent);
+  offsetXPercent = Math.min(100, offsetXPercent);
+
+  var percentageString = offsetXPercent + '%';
+  $seekBar.find('.fill').width(percentageString);
+  $seekBar.find('.thumb').css({left: percentageString});
+};
+
+
+
+var trackIndex = function(album, song) {
+       return album.songs.indexOf(song);
+};
+>>>>>>> checkpoint-21
 
 
 var nextSong = function() {
@@ -117,8 +148,24 @@ var nextSong = function() {
 
     var lastSongNumber = currentlyPlayingSongNumber;
 
+<<<<<<< HEAD
     setSong(currentSongIndex +1);
     currentSoundFile.play();
+=======
+var nextSong = function() {
+    var currentSongIndex = trackIndex(currentAlbum, currentSongFromAlbum);
+    currentSongIndex++;
+
+    if (currentSongIndex >= currentAlbum.songs.length) {
+        currentSongIndex = 0;
+    }
+
+    var lastSongNumber = currentlyPlayingSongNumber;
+
+    setSong(currentSongIndex +1);
+    currentSoundFile.play();
+    updateSeekBarWhileSongPlays();
+>>>>>>> checkpoint-21
     updatePlayerBarSong();
 
     var $nextSongNumberCell = getSongNumberCell(currentlyPlayingSongNumber);
@@ -140,6 +187,10 @@ var previousSong = function() {
 
     setSong(currentSongIndex + 1);
     currentSoundFile.play();
+<<<<<<< HEAD
+=======
+    updateSeekBarWhileSongPlays();
+>>>>>>> checkpoint-21
     updatePlayerBarSong();
 
     $('.main-controls .play-pause').html(playerBarPauseButton);
