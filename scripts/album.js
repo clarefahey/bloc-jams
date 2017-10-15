@@ -254,14 +254,21 @@ var setTotalTimeInPlayerBar = function(totalTime) {
 };
 
 var filterTimeCode = function (timeInSeconds) {
-  var songToTime = parseFloat(parseInt(timeInSeconds));
-  parseFloat(songToTime);
+  var seconds = Number.parseFloat(timeInSeconds);
+  var wholeSeconds = Math.floor(seconds);
+  var minutes = Math.floor(wholeSeconds / 60);
 
-  var getSongInMinutes = Math.floor(songToTime / 60);
-  var getSongInSeconds = Math.floor(songToTime % 60);
+  var remainingSeconds = wholeSeconds % 60;
+  var output = minutes + ':';
 
-  return getSongInMinutes + ":" + getSongInSeconds;
-}
+  if (remainingSeconds < 10) {
+    output += '0';
+  }
+
+  output += remainingSeconds;
+  return output;
+
+};
 
 
 var updatePlayerBarSong = function() {
